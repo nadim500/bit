@@ -29,6 +29,7 @@ module.exports = function(app){
     });
 
     router.post('/crearPromocion',function(req,res){
+	console.log("imagen : ", req.body.imagen);
 	var nuevaPromocion = {
 	    nombre: req.body.nombre,
 	    descripcion: req.body.descripcion,

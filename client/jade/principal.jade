@@ -31,21 +31,12 @@ html
                 label Puntos
                 input(type="number" name="puntos")
               .field
-                label Imagen
-                input#secImgUp(type="file" name="imagen")
-              .field
                 label Dirección:
                 input#input(type="text" name="dir" placeholder="Dirección")
               input#oculto(type="hidden" name="autocompletado")
               input(type="hidden" name="idEmpresa" value="#{objEmpresa.id}")
               input.ui.button(type="submit")
   script.
-    
-    $("#secImgUp").on("change",function(){
-      var files = !!this.files ? this.files : [];
-      console.log("files", files);
-      console.log($('input[name^="imagen"]')[0].files[0]);
-    });
   
     var mapGoogle = document.getElementById('map');
     function initMap(){
