@@ -1,0 +1,82 @@
+doctype html
+html
+  head
+    title Test
+    meta(charset='UTF-8')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0")
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    link(rel="stylesheet" type="text/css" href="../css/semantic/dist/semantic.min.css")
+    script(src="../css/semantic/dist/semantic.min.js")
+  body
+    #map
+    .ui.container
+      .ui.grid
+        .ui.row
+          h1.ui.header CREAR PROMOCION
+        .ui.row
+          .ui.column
+            form.ui.form(action="/crearPromocion" method="post")
+              h4.ui.dividing.header Promoción
+              .field
+                label Nombre
+                input(type="text" name="nombre")
+              .field
+                label Descripcion
+                input(type="text" name="descripcion")
+              .field
+                label Costo
+                input(type="number" name="costo")
+              .field
+                label Puntos
+                input(type="number" name="puntos")
+              .field
+                label Imagen
+                input#secImgUp(type="file" name="imagen")
+              .field
+                label Dirección:
+                input#input(type="text" name="dir" placeholder="Dirección")
+              input#oculto(type="hidden" name="autocompletado")
+              input(type="hidden" name="idEmpresa" value="#{objEmpresa.id}")
+              input.ui.button(type="submit")
+  script.
+    
+    $("#secImgUp").on("change",function(){
+      var files = !!this.files ? this.files : [];
+      console.log("files", files);
+      console.log($('input[name^="imagen"]')[0].files[0]);
+    });
+  
+    var mapGoogle = document.getElementById('map');
+    function initMap(){
+      var centro = {
+        lat : -12.046775,
+        lng : -77.042820
+      };
+      map = new google.maps.Map(mapGoogle,{
+       center: centro,
+       zoom: 12,
+       mapTypeControl : false,
+         streetViewControl : false,
+         zoomControlOptions : {
+           position : google.maps.ControlPosition.RIGHT_CENTER
+         }
+       });
+      var input = document.getElementById('input');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autoCompletado(autocomplete,map);
+    }
+    function autoCompletado(autocomplete,map){
+      autocomplete.bindTo('bounds',map);
+      autocomplete.addListener('place_changed',function(){
+        var place = autocomplete.getPlace();
+        console.log("place: ",place.geometry.location);
+        if(!place.geometry){
+          window.alert("Autocomplete's returned place contains no geometry");
+          return;
+        }
+        place = JSON.stringify(place.geometry.location);
+        $('#oculto').val(place);
+      });
+    }
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBAokA_s6fiIgwMT4yY7tzVSWAnHvbg0W8&signed_in=false&libraries=places&callback=initMap')

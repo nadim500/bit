@@ -1,0 +1,36 @@
+{
+  "name": "Promocion",
+  "plural": "promociones",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "puntos": {
+      "type": "number"
+    },
+    "costo": {
+      "type": "number"
+    },
+    "direccion": {
+      "type": "geopoint"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "empresa": {
+      "type": "belongsTo",
+      "model": "Empresa",
+      "foreignKey": "empresaId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

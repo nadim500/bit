@@ -1,0 +1,24 @@
+{
+  "name": "Promocion",
+  "plural": "promociones",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nombre": {
+      "type": "string"
+    },
+    "costo": {
+      "type": "string"
+    },
+    "puntos": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

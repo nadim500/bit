@@ -1,0 +1,14 @@
+{
+  "name": "Empresa",
+  "plural": "empresas",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
