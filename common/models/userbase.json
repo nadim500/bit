@@ -8,9 +8,7 @@
   },
   "properties": {
     "points": {
-      "type": [
-        "object"
-      ]
+      "type": "object"
     }
   },
   "validations": [],

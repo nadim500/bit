@@ -43,8 +43,23 @@ module.exports = function(app){
 	    if(err) return res.sendStatus(404);
 	    return res.render('success');
 	});
-	
-    })
+    });
+
+    router.get('/actualizarPointUser',function(req,res){
+	var userId = req.query.userId;
+	var puntos = parseInt(req.query.puntos);
+	var empresaId = req.query.empresaId;
+	Userbase.findById(userId, function(err, userbase){
+	    if(err) return res.sendStatus(404);
+	    if(!userbase.points[empresaId]){
+		userbase.points[empresaId] = puntos;
+	    }else{
+		userbase.points[empresaId] += puntos;
+	    }
+	    userbase.save();
+	    console.log("fin actualizacion");
+	});
+    });
 
     router.get('/crearEmpresa',function(req,res){
 	return res.render('crearEmpresa');
