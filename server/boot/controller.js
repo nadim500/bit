@@ -5,6 +5,60 @@ module.exports = function(app){
     var Userbase = app.models.Userbase;
     var Promocion = app.models.Promocion;
 
+    var promociones = [
+	{
+	    nombre: "2 x 1 en Zapatos",
+	    descripcion: "Dos por uno en zapatos",
+	    puntos: 20,
+	    costo: 10,
+	    direccion: {
+		lat: -12.046374,
+		lng: -77.042793
+	    }
+	},{
+	    nombre: "1 x 1 en Medias",
+	    descripcion: "Dos por uno en medias",
+	    puntos: 200,
+	    costo: 101,
+	    direccion: {
+		lat: -12.046374,
+		lng: -77.042793
+	    }
+	},{
+	    nombre: "Chullos de lana 50%",
+	    descripcion: "al 50 porciento",
+	    puntos: 202,
+	    costo: 10,
+	    direccion: {
+		lat: -12.046374,
+		lng: -77.042793
+	    }
+	},{
+	    nombre: "Billetera para hombre 30% de descuento",
+	    descripcion: "Mejor cuero de calidad",
+	    puntos: 20,
+	    costo: 10,
+	    direccion: {
+		lat: -12.046374,
+		lng: -77.042793
+	    }
+	},{
+	    nombre: "4 curaciones dentales a 35 soles",
+	    descripcion: "Sonrisa perfecta",
+	    puntos: 20,
+	    costo: 10,
+	    direccion: {
+		lat: -12.046374,
+		lng: -77.042793
+	    }
+	}
+    ];
+
+    Promocion.create(promociones,function(err,prom){
+	if(err) return res.sendStatus(404);
+	console.log("todo Creado");
+    })    
+
     router.get('/login',function(req,res){
 	return res.render('login');
     });
